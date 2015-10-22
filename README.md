@@ -1,0 +1,2 @@
+# SuperUser
+SuperUser in PocketMine
