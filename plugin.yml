@@ -1,6 +1,6 @@
 name: SuperUser
 main: ifteam\SuperUser\SuperUser
-version: 0.1-Alpha
+version: 0.2-Alpha
 author: ifteam
 api:
 - 1.0.0

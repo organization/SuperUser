@@ -2,7 +2,7 @@
 # YOU SHOULD MODIFY THIS MESSAGE.YML FILE -! #
 
 #PLEASE SET HERE TO YOUR LANGUAGE PREFIX
-m_version: 1
+m_version: 2
 
 #(EN) ENGLISH
 eng: true
@@ -33,6 +33,8 @@ kor-passwd-passkey-deleted: "해당 인증키가 성공적으로 삭제되었습
 kor-passwd-passkey-resetted: "모든 인증키 정보가 성공적으로 삭제되었습니다 !"
 kor-show-all-passkey: "서버의 모든 인증키를 표시합니다 !"
 kor-passkey-is-has-been-exposed-so-expired: "인증키가 노출되었습니다. 만료처리되었습니다."
+kor-administrator: "관리자"
+kor-executor: "집행관"
 
 # AND YOU CAN PROVIDE YOUR TRANSLATION       #
 # https://github.com/if-Team/PMMP-Plugins/blob/master/SuperUser/resources/messages.yml

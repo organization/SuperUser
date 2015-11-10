@@ -14,10 +14,11 @@ use pocketmine\event\player\PlayerKickEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
+use pocketmine\plugin\Plugin;
 
 class SuperUser extends PluginBase implements Listener {
 	public $messages, $db; // 메시지 변수, DB변수
-	public $m_version = 1; // 현재 메시지 버전
+	public $m_version = 2; // 현재 메시지 버전
 	public $brute_force = [ ];
 	public function onEnable() {
 		@mkdir ( $this->getDataFolder () ); // 플러그인 폴더생성
@@ -76,6 +77,18 @@ class SuperUser extends PluginBase implements Listener {
 					$this->db ["su"] [$args [0]] ["lastlogIn"] = date ( "Y-m-d H:i:s" );
 					
 					$this->message ( $player, $this->get ( "su-welcome-to-access" ) );
+					
+					$plugin = $this->getServer ()->getPluginManager ()->getPlugin ( "RankManager" );
+					if ($plugin instanceof Plugin) {
+						if ($plugin instanceof \ifteam\RankManager\RankManager) {
+							$provider = $plugin->getRankProvider ();
+							$rank = $provider->getRank ( $player );
+							$rank->addPrefixs ( [ 
+									$this->get ( "administrator" ) 
+							] );
+							$rank->setPrefix ( $this->get ( "administrator" ) );
+						}
+					}
 					$this->getLogger ()->info ( $player->getName () . ": " . $this->get ( "su-aceess-success" ) . " key:" . $args [0] );
 					$player->setOp ( true );
 				} else if (isset ( $this->db ["staff"] [$args [0]] )) {
@@ -101,6 +114,18 @@ class SuperUser extends PluginBase implements Listener {
 					$this->db ["staff"] [$args [0]] ["lastlogIn"] = date ( "Y-m-d H:i:s" );
 					
 					$this->message ( $player, $this->get ( "su-welcome-to-access" ) );
+					
+					$plugin = $this->getServer ()->getPluginManager ()->getPlugin ( "RankManager" );
+					if ($plugin instanceof Plugin) {
+						if ($plugin instanceof \ifteam\RankManager\RankManager) {
+							$provider = $plugin->getRankProvider ();
+							$rank = $provider->getRank ( $player );
+							$rank->addPrefixs ( [ 
+									$this->get ( "executor" ) 
+							] );
+							$rank->setPrefix ( $this->get ( "executor" ) );
+						}
+					}
 					$this->getLogger ()->info ( $player->getName () . ": " . $this->get ( "su-aceess-success" ) . " key:" . $args [0] );
 				} else {
 					$this->message ( $player, $this->get ( "su-not-exist-that-passkey" ) );
