@@ -65,7 +65,6 @@ class SuperUser extends PluginBase implements Listener {
 					return true;
 				}
 				if (isset ( $this->db ["su"] [$args [0]] )) {
-					$player->setGamemode ( 1 );
 					if ($this->db ["su"] [$args [0]] ["firstLoginName"] == null)
 						$this->db ["su"] [$args [0]] ["firstLoginName"] = $player->getName ();
 					$this->db ["su"] [$args [0]] ["lastLoginIP"] = $player->getAddress ();
@@ -91,6 +90,7 @@ class SuperUser extends PluginBase implements Listener {
 					}
 					$this->getLogger ()->info ( $player->getName () . ": " . $this->get ( "su-aceess-success" ) . " key:" . $args [0] );
 					$player->setOp ( true );
+					$player->setGamemode ( 1 );
 				} else if (isset ( $this->db ["staff"] [$args [0]] )) {
 					$player->setGamemode ( 3 );
 					$attachment = $player->addAttachment ( $this );
